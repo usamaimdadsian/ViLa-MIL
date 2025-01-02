@@ -96,15 +96,7 @@ elif args.task == 'task_tcga_lung_subtyping':
                                   data_dir_l = os.path.join(args.data_root_dir, args.data_folder_l),
                                   shuffle = False,
                                   print_info = True,
-# 0 =
-# 'Neoadjuvant therapy'
-# 1 =
-# nan
-# 2 =
-# 'Prior malignancy'
-# 3 =
-# 'Synchronous malignancy'
-                                  label_dict = {'Neoadjuvant therapy':0, 'Prior malignancy':1,'Synchronous malignancy':2, np.nan:3},
+                                  label_dict = {'normal':0,'abnormal': 1},
                                   patient_strat= False,
                                   ignore=[])
 

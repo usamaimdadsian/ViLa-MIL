@@ -14,7 +14,7 @@ import torch.multiprocessing
 import torchvision
 from torch.utils.data.dataset import Dataset
 from torchvision import transforms
-device = torch.device('cpu')
+device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 # Model Architectures

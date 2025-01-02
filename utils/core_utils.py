@@ -275,6 +275,8 @@ def validate(cur, epoch, model, loader, n_classes, early_stopping = None, writer
 
     val_error /= len(loader)
     val_loss /= len(loader)
+    all_label = [label.squeeze().item() for label in all_label]
+    all_pred = [pred.squeeze().item() for pred in all_pred]
     val_f1 = f1_score(all_label, all_pred, average='macro')
 
     if n_classes == 2:

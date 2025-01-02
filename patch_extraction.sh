@@ -1,2 +1,2 @@
-# python feature_extraction/patch_extraction.py --library_path=patch_features/small --patches_path=/mnt/linux/programmes/itu/semester5/thesis1/ViLa-MIL/gen_patches/small --model_name=clip_RN50 --batch_size=16
-python feature_extraction/patch_extraction.py --library_path=patch_features/large --patches_path=/mnt/linux/programmes/itu/semester5/thesis1/ViLa-MIL/gen_patches/large --model_name=clip_RN50 --batch_size=16
+python feature_extraction/patch_extraction.py --library_path=patch_features/small --patches_path=/mnt/linux/programmes/itu/semester5/thesis1/ViLa-MIL/gen_patches/small --model_name=clip_RN50 --batch_size=16
+# python feature_extraction/patch_extraction.py --library_path=patch_features/large --patches_path=/mnt/linux/programmes/itu/semester5/thesis1/ViLa-MIL/gen_patches/large --model_name=clip_RN50 --batch_size=16

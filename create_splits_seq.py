@@ -32,7 +32,7 @@ if args.task == 'task_tcga_rcc_subtyping':
 
 elif args.task == 'task_tcga_lung_subtyping':
     args.n_classes=2
-    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/TCGA_Lung_subtyping_mod.csv',
+    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/TCGA_Lung_subtyping.csv',
                                                  shuffle = False,
                                                  seed = args.seed,
                                                  print_info = True,

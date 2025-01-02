@@ -318,6 +318,18 @@ class Generic_MIL_Dataset(Generic_WSI_Classification_Dataset):
 		self.data_dir_l = data_dir_l
 		self.mode = mode
 		self.use_h5 = False
+		self.slide_data = self.slide_data[self.slide_data["slide_id"].apply(self.slide_exists)]
+
+	def slide_exists(self,slide_id):
+		small_path = os.path.join(self.data_dir_s, '{}.h5'.format(slide_id))
+		if not os.path.isfile(small_path):
+			small_path = os.path.join(self.data_dir_s, '{}.h5'.format(slide_id.upper()))
+		large_path = os.path.join(self.data_dir_l, '{}.h5'.format(slide_id))
+		if not os.path.isfile(large_path):
+			large_path = os.path.join(self.data_dir_l, '{}.h5'.format(slide_id.upper()))
+
+		return (os.path.isfile(small_path) and os.path.isfile(large_path))
+
 
 	def load_from_h5(self, toggle):
 		self.use_h5 = toggle
@@ -336,8 +348,15 @@ class Generic_MIL_Dataset(Generic_WSI_Classification_Dataset):
 		if not self.use_h5:
 			if self.data_dir_s and self.data_dir_l:
 				if(self.mode == 'transformer'):
-					scale_s = h5py.File(os.path.join(data_dir_s, '{}.h5'.format(slide_id.upper())), 'r')
-					scale_l = h5py.File(os.path.join(data_dir_l, '{}.h5'.format(slide_id.upper())), 'r')
+					small_path = os.path.join(data_dir_s, '{}.h5'.format(slide_id))
+					if not os.path.isfile(small_path):
+						small_path = os.path.join(data_dir_s, '{}.h5'.format(slide_id.upper()))
+					large_path = os.path.join(data_dir_l, '{}.h5'.format(slide_id))
+					if not os.path.isfile(large_path):
+						large_path = os.path.join(data_dir_l, '{}.h5'.format(slide_id.upper()))
+					
+					scale_s = h5py.File(small_path, 'r')
+					scale_l = h5py.File(large_path, 'r')
 					features_s = torch.from_numpy(np.array(scale_s['features']))
 					coords_s = torch.from_numpy(np.array(scale_s['coords']))
 					features_l = torch.from_numpy(np.array(scale_l['features']))
