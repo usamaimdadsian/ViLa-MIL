@@ -344,7 +344,13 @@ def summary(mode, model, loader, n_classes):
             all_label.append(label.cpu())
 
         test_error /= len(loader)
-        test_f1 = f1_score(all_label, all_pred, average='macro')
+
+        try:
+            all_label = [label.squeeze().item() for label in all_label]
+            all_pred = [pred.squeeze().item() for pred in all_pred]
+            test_f1 = f1_score(all_label, all_pred, average='macro')
+        except:
+            test_f1 = -1
 
         if n_classes == 2:
             auc = roc_auc_score(all_labels, all_probs[:, 1])
