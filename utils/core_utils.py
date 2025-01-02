@@ -275,9 +275,12 @@ def validate(cur, epoch, model, loader, n_classes, early_stopping = None, writer
 
     val_error /= len(loader)
     val_loss /= len(loader)
-    all_label = [label.squeeze().item() for label in all_label]
-    all_pred = [pred.squeeze().item() for pred in all_pred]
-    val_f1 = f1_score(all_label, all_pred, average='macro')
+    try:
+        all_label = [label.squeeze().item() for label in all_label]
+        all_pred = [pred.squeeze().item() for pred in all_pred]
+        val_f1 = f1_score(all_label, all_pred, average='macro')
+    except:
+        val_f1 = -1
 
     if n_classes == 2:
         auc = roc_auc_score(labels, prob[:, 1])
