@@ -6,12 +6,14 @@ import pandas as pd
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 
-slide_folder = 'SLIDE_FOLDER_PATH'
-all_data = np.array(pd.read_excel('ALL_DATA_PATH', engine='openpyxl',  header=None))
-root_folder = 'ROOT_FOLDER_PATH' 
-define_patch_size = 1024 
-patch_folder = 'ROOT_FOLDER_PATH' + +'/patches_'+str(define_patch_size)+'/'
-save_folder = 'SAVE_FOLDER_PATH'
+slide_folder = '/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/WSI/Lung'
+all_data = np.array(pd.read_excel('/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/uuid_file_name.xlsx', engine='openpyxl',  header=None))
+root_folder = 'output' 
+# define_patch_size = 1024 
+define_patch_size = 2048 
+patch_folder = root_folder +'/patches_'+str(define_patch_size)+'/'
+# save_folder = 'gen_patches/small/'
+save_folder = 'gen_patches/large/'
 
 if(define_patch_size == 2048):
     scale = 8
@@ -51,7 +53,7 @@ def generate_patch(patch_file_name):
         elif(magnification == 20):
             resized_patch_size = int(patch_size/(scale/2))
         for coord in tqdm(coords):
-            coord = coord.astype(np.int)
+            coord = coord.astype(int)
             patch = slide.read_region(coord, int(patch_level), (int(patch_size), int(patch_size))).convert('RGB')
             patch = patch.resize((resized_patch_size, resized_patch_size))
             patch_name = str(coord[0]) + '_' + str(coord[1]) + '.png'
@@ -65,5 +67,11 @@ all_file_names = np.array(os.listdir(patch_folder))
 for patch_file_name in all_file_names:
     pool.submit(generate_patch, patch_file_name)
 pool.shutdown(wait=True)
+
+
+
+# all_file_names = np.array(os.listdir(patch_folder))
+# for patch_file_name in all_file_names:
+#     generate_patch(patch_file_name)
 
 

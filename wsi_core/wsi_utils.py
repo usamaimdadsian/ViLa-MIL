@@ -203,7 +203,7 @@ def DrawMapFromCoords(canvas, wsi_object, coords, patch_size, vis_level, indices
         
         patch_id = indices[idx]
         coord = coords[patch_id]
-        patch = np.array(wsi_object.wsi.read_region(tuple(coord), vis_level, patch_size).convert("RGB"))
+        patch = np.array(wsi_object.wsi.read_region((int(coord[0]),int(coord[1])), vis_level, patch_size).convert("RGB"))
         # patch = np.array(Image.new(size=(patch.shape[0],patch.shape[1]), mode="RGB", color=(255,255,255)))
 
         coord = np.ceil(coord / downsamples).astype(np.int32)

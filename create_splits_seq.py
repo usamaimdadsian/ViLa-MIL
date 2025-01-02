@@ -36,7 +36,7 @@ elif args.task == 'task_tcga_lung_subtyping':
                                                  shuffle = False,
                                                  seed = args.seed,
                                                  print_info = True,
-                                                 label_dict = {'LUAD':0, 'LUSC':1},
+                                                 label_dict = {'Neoadjuvant therapy':0,'Prior malignancy': 1,'Synchronous malignancy':2, np.nan:3},
                                                  patient_strat= True,
                                                  patient_voting='maj',
                                                  ignore=[])

@@ -14,7 +14,7 @@ import torch.multiprocessing
 import torchvision
 from torch.utils.data.dataset import Dataset
 from torchvision import transforms
-device = torch.device('cuda')
+device = torch.device('cpu')
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 # Model Architectures
@@ -70,6 +70,9 @@ def save_embeddings(model, fname, dataloader, enc_name, overwrite=False):
             coords.append([int(coord[0]), int(coord[1])])
 
     print(fname)
+
+    if (len(embeddings)<1):
+        return
 
     embeddings = np.vstack(embeddings)
     coords = np.vstack(coords)

@@ -93,6 +93,7 @@ class Generic_WSI_Classification_Dataset(Dataset):
 			locations = self.slide_data[self.slide_data['case_id'] == p].index.tolist()
 			assert len(locations) > 0
 			label = self.slide_data['label'][locations].values
+			label = label.astype(float)
 			if patient_voting == 'max':
 				label = label.max() 
 			elif patient_voting == 'maj':

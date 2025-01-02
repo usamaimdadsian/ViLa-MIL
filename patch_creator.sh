@@ -1,0 +1,4 @@
+# 1024
+# python create_patches_fp.py --source=/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/WSI/Lung --slide_name_file=/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/slide_name_df.csv --preset=/mnt/linux/programmes/itu/semester5/thesis1/ViLa-MIL/presets/tcga.csv --save_dir=output --patch_size=1024 --step_size=1024 --seg --patch --uuid_name_file=/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/uuid_file_name.xlsx
+# 2048
+python create_patches_fp.py --source=/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/WSI/Lung --slide_name_file=/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/slide_name_df.csv --preset=/mnt/linux/programmes/itu/semester5/thesis1/ViLa-MIL/presets/tcga.csv --save_dir=output --patch_size=2048 --step_size=2048 --seg --patch --uuid_name_file=/mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/uuid_file_name.xlsx

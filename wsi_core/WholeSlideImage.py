@@ -462,6 +462,9 @@ class WholeSlideImage(object):
 
         iterable = [(coord, contour_holes, ref_patch_size[0], cont_check_fn) for coord in coord_candidates]
         results = pool.starmap(WholeSlideImage.process_coord_candidate, iterable)
+        # results = []
+        # for item in iterable:
+        #     results.append(WholeSlideImage.process_coord_candidate(*item))
         pool.close()
         results = np.array([result for result in results if result is not None])
 
