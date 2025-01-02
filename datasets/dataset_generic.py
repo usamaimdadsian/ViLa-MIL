@@ -336,8 +336,8 @@ class Generic_MIL_Dataset(Generic_WSI_Classification_Dataset):
 		if not self.use_h5:
 			if self.data_dir_s and self.data_dir_l:
 				if(self.mode == 'transformer'):
-					scale_s = h5py.File(os.path.join(data_dir_s, '{}.h5'.format(slide_id)), 'r')
-					scale_l = h5py.File(os.path.join(data_dir_l, '{}.h5'.format(slide_id)), 'r')
+					scale_s = h5py.File(os.path.join(data_dir_s, '{}.h5'.format(slide_id.upper())), 'r')
+					scale_l = h5py.File(os.path.join(data_dir_l, '{}.h5'.format(slide_id.upper())), 'r')
 					features_s = torch.from_numpy(np.array(scale_s['features']))
 					coords_s = torch.from_numpy(np.array(scale_s['coords']))
 					features_l = torch.from_numpy(np.array(scale_l['features']))

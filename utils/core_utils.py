@@ -9,6 +9,7 @@ from sklearn.metrics import roc_auc_score, roc_curve, f1_score
 from sklearn.metrics import auc as calc_auc
 from utils.loss_utils import FocalLoss
 
+device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class Accuracy_Logger(object):
     """Accuracy logger"""
@@ -148,7 +149,7 @@ def train(datasets, cur, args):
     if hasattr(model, "relocate"):
         model.relocate()
     else:
-        model = model.to(torch.device('cuda:0'))
+        model = model.to(device)
     print('Done!')
     print_network(model)
 
