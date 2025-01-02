@@ -13,6 +13,8 @@ import clip
 from clip.simple_tokenizer import SimpleTokenizer as _Tokenizer
 _tokenizer = _Tokenizer()
 
+device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 class TextEncoder(nn.Module):
     def __init__(self, clip_model):
@@ -225,8 +227,8 @@ class ViLa_MIL_Model(nn.Module):
         text_context_features_high, _ = self.cross_attention_2(text_features_high.unsqueeze(1), image_context_high, image_context_high)
         text_features_high = text_context_features_high.squeeze() + text_features_high
 
-        logits_low = image_features_low @ text_features_low.T.cuda()
-        logits_high = image_features_high @ text_features_high.T.cuda()
+        logits_low = image_features_low @ text_features_low.T.to(device)
+        logits_high = image_features_high @ text_features_high.T.to(device)
         logits = logits_low + logits_high
 
         loss = self.loss_ce(logits, label)

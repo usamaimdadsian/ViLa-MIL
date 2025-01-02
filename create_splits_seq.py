@@ -32,11 +32,11 @@ if args.task == 'task_tcga_rcc_subtyping':
 
 elif args.task == 'task_tcga_lung_subtyping':
     args.n_classes=2
-    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/TCGA_Lung_subtyping.csv',
+    dataset = Generic_WSI_Classification_Dataset(csv_path = 'dataset_csv/TCGA_Lung_subtyping_mod.csv',
                                                  shuffle = False,
                                                  seed = args.seed,
                                                  print_info = True,
-                                                 label_dict = {'Neoadjuvant therapy':0,'Prior malignancy': 1,'Synchronous malignancy':2, np.nan:3},
+                                                 label_dict = {'normal':0,'abnormal': 1},
                                                  patient_strat= True,
                                                  patient_voting='maj',
                                                  ignore=[])

@@ -39,7 +39,7 @@ first time will create patches in gen_patches/small folder
 Copy the following file
 /mnt/linux/programmes/itu/semester5/thesis1/tcga-lung/slide_name_df.csv
 
-to  ${workspaceFolder}/TCGA_Lung_subtyping.csv
+to  ${workspaceFolder}/dataset_csv/TCGA_Lung_subtyping.csv
 
 # Step 5
 Change the line 39 in create_splits_seq.py file to following:
